@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.R
+import com.example.ui.components.shimmerEffect
 import com.example.ui.viewmodel.MainViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -205,6 +206,49 @@ fun DashboardScreen(viewModel: MainViewModel, onNavigate: (Any) -> Unit) {
             ) {
                 items(menuItems) { item ->
                     DashboardCard(item = item, onClick = { onNavigate(item.route) })
+                }
+            }
+        }
+    }
+    }
+}
+
+@Composable
+private fun DashboardShimmer(modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(horizontal = 16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        Spacer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(200.dp)
+                .clip(RoundedCornerShape(24.dp))
+                .shimmerEffect()
+        )
+        Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+            repeat(2) {
+                Spacer(
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(96.dp)
+                        .clip(RoundedCornerShape(20.dp))
+                        .shimmerEffect()
+                )
+            }
+        }
+        repeat(4) {
+            Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                repeat(2) {
+                    Spacer(
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(120.dp)
+                            .clip(RoundedCornerShape(24.dp))
+                            .shimmerEffect()
+                    )
                 }
             }
         }
